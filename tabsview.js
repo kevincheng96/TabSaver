@@ -5,12 +5,12 @@ document.addEventListener('DOMContentLoaded', function() {
 function generateTabList() { //creates the list of saved tabs on the popup (tabsview.html)
 	chrome.storage.local.get('urls', function(result) {
 		console.log(result);
-		var ul = makeUL(result['urls']);
 		var savedTabsList= document.getElementById('savedtabs');
 		while (savedTabsList.firstChild) { //removes every currently existing element in savedTabsList
 		    savedTabsList.removeChild(savedTabsList.firstChild);
 		}
-		savedTabsList.appendChild(ul); //dynamically adds the saved tabs to the savedTabsList
+		var ul = makeUL(result['urls']); //makes an unordered list of stored urls using makeURL()
+		savedTabsList.appendChild(ul); //dynamically adds the ul of saved tabs to the savedTabsList
 		savedTabsList.addEventListener('click', function(e) { //listens for a click on the link
 			var clicked_url = e.target.href;
 			chrome.tabs.create({url: clicked_url}); //creates a new tab with that url when clicked
