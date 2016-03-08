@@ -6,3 +6,8 @@ body {
   position: relative;
   vertical-align: middle;
 }
+
+#savedtabs {
+	white-space: nowrap;
+	overflow: scroll;
+}

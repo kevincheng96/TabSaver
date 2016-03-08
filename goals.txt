@@ -1,0 +1,5 @@
+Checklist of stuff to do:
+-Add x next to each link so user can personally delete it without having to open that link first
+-Improve UI
+-Add personal extension icon
+-Add a confirmation for clearing all saved tabs. Alerts don't work in Chrome extensions.

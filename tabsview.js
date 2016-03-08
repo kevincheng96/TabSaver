@@ -41,8 +41,9 @@ function makeUL(array) {
         var list_item = document.createElement('li');
         //create link (using anchor)
         var anchor = document.createElement("a");
-        anchor.href = array[i]['url'];
-        anchor.innerText = array[i]['url_short'];
+        anchor.href = array[i]['url']; //sets the link for the element in the list
+        var anchor_text = array[i]['url_short'].substring(0,21) + '...'; //shortens the text that is displayed in the list
+        anchor.innerText = anchor_text;
         //add this anchor link to the list item
         list_item.appendChild(anchor);
         //add this list item to the list
@@ -55,14 +56,10 @@ function makeUL(array) {
 document.addEventListener('DOMContentLoaded', function() {
 	var checkDeleteButton = document.getElementById("deletetabs");
 	checkDeleteButton.addEventListener('click', function(){
-		if (confirm('Are you sure you want to delete all your saved tabs?')) { //confirm if user wants to delete saved tabs
-			//if 'Yes', clear all saved tabs
-			chrome.storage.local.clear(function(){
-				checkDeleteButton.innerHTML = "Successfully deleted!"
-				generateTabList();
-			});
-		} else {
-		//if 'No', do nothing!
-		}
+		//NEED TO ADD A CONFIRMATION TO DELETE. ALERTS DONT WORK
+		chrome.storage.local.clear(function(){
+			checkDeleteButton.innerHTML = "Successfully deleted!"
+			generateTabList();
+		});
 	}, false);
 }, false);
