@@ -17,7 +17,6 @@
     "default_popup": "popup.html"
   },
   "permissions": [
-    "bookmarks",
     "tabs",
     "sessions",
     "storage"

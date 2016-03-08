@@ -6,6 +6,8 @@ document.addEventListener('DOMContentLoaded', function() {
 }, false);
 
 
+//Each saved url is saved as an individual object. So result returns an array of objects.
+//Each object is a dictionary with the keys 'url' and 'url_short'
 function saveTab() {
 	//retrieve the old url_dict_list from local storage
 	chrome.storage.local.get('urls', function(result) {
@@ -28,7 +30,7 @@ function saveTab() {
 			var url_short = tab[0].title;
 			var url_dict = {'url': tab_url, 'url_short': url_short}
 			if ($.inArray(tab_url, url_list) == -1) //if current URL is not already saved
-			{ //NEED TO DEBUG WHY THIS ALWAYS RUNS SO DUPLICATES CAN BE STORED!!!
+			{
 				url_dict_list.push(url_dict);
 				console.log(url_short);
 				console.log('not already saved')
