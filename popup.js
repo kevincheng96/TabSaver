@@ -1,18 +1,32 @@
 document.addEventListener('DOMContentLoaded', function() {
-	var checkSaveTabButton = document.getElementById('savetab');
+	var checkSaveTabButton = document.getElementById("savetab");
 	checkSaveTabButton.addEventListener('click', function() {
+		checkSaveTabButton.innerHTMl = "tab saved.";
 		saveTab();
 	}, false);
-	var checkSaveWindowButton = document.getElementById('savewindow');
+	// var checkSaveWindowButton = document.getElementById("savewindow");
+	// checkSaveWindowButton.addEventListener('click', function() {
+	// 	saveWindow();
+	// }, false);
+	// var checkSaveSessionButton = document.getElementById("savesession");
+	// checkSaveWindowButton.addEventListener('click', function() {
+	// 	saveSession();
+	// }, false);
+}, false);
+
+document.addEventListener('DOMContentLoaded', function() {
+	var checkSaveWindowButton = document.getElementById("savewindow");
 	checkSaveWindowButton.addEventListener('click', function() {
 		saveWindow();
 	}, false);
-	var checkSaveWindowButton = document.getElementById('savesession');
-	checkSaveWindowButton.addEventListener('click', function() {
+}, false);
+
+document.addEventListener('DOMContentLoaded', function() {
+	var checkSaveSessionButton = document.getElementById("savesession");
+	checkSaveSessionButton.addEventListener('click', function() {
 		saveSession();
 	}, false);
 }, false);
-
 
 //Each saved url is saved as an individual object. So result returns an array of objects.
 //Each object is a dictionary with the keys 'url' and 'url_short'
@@ -36,21 +50,19 @@ function saveTab() {
 		chrome.tabs.query({currentWindow: true, active: true}, function(tab) {
 			var tab_url = tab[0].url;
 			var url_short = tab[0].title;
-			var url_dict = {'url': tab_url, 'url_short': url_short}
+			var url_icon = tab[0].favIconUrl
+			var url_dict = {'url': tab_url, 'url_short': url_short, 'icon': url_icon}
 			if ($.inArray(tab_url, url_list) == -1) //if current URL is not already saved
 			{
 				url_dict_list.push(url_dict);
 				console.log(url_short);
 				console.log('not already saved')
 			}
-			else
-				document.getElementById('status').innerHTMl = "URL already saved"
 			//first delete the old urls from storage, then add the new urls into storage
 			chrome.storage.local.remove('urls', function() {
 				//locally save url_dict_list (containing the new url)
 				chrome.storage.local.set({'urls': url_dict_list}, function() {
 					//callback function (maybe show that tab was successfully added)
-					console.log("successfully added " + tab_url);
 				});
 			});
 		});	
@@ -91,6 +103,8 @@ function saveWindow() {
 				//locally save url_dict_list (containing the new url)
 				chrome.storage.local.set({'urls': url_dict_list}, function() {
 					//callback function (maybe show that tab was successfully added)
+					document.getElementById('savewindow').value = "window saved.";
+					console.log('saved')
 				});
 			});
 		});	
@@ -134,8 +148,17 @@ function saveSession() {
 				//locally save url_dict_list (containing the new url)
 				chrome.storage.local.set({'urls': url_dict_list}, function() {
 					//callback function (maybe show that tab was successfully added)
+					document.getElementById('savesession').innerHTMl = "session saved.";
 				});
 			});
 		});	
 	});
 };
+
+document.addEventListener('DOMContentLoaded', function() {
+	var checkViewTabsButton = document.getElementById("viewtabs");
+	checkViewTabsButton.addEventListener('click', function() {
+		window.location.href = "tabsview.html";
+	}, false);
+}, false);
+

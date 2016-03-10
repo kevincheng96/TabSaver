@@ -1,13 +1,102 @@
-body {
-  min-width: 250px; /* your desired width */
-  max-width: 250px;
-  min-height: 300px;
-  max-height: 300px;
-  position: relative;
-  vertical-align: middle;
+html, body {
+	padding: 0;
+	margin: 10px;
+	height: 100%;
+	min-height: 100%;
 }
 
-#savedtabs {
-	white-space: nowrap;
-	overflow: scroll;
+body {
+ 	min-width: 300px; /* your desired width */
+  	max-width: 300px;
+  	min-height: 375px;
+  	max-height: 375px;
+  	position: relative;
+  	vertical-align: middle;
+  	background-color: #E0FFFF;
+}
+
+button {
+	display: inline;
+	margin: 0 auto 0 auto;
+	float: left;
+	background-color: transparent;
+	border: 2px black solid;
+    border-radius: 10px;
+    font-family: "Trebuchet MS", Helvetica, sans-serif;
+    font-size: 10pt;
+}
+
+button:focus {
+	outline: 0;
+}
+
+.center {
+	text-align: center;
+}
+
+.inline {
+	display: inline;
+	text-align: left;
+}
+
+#goback {
+	text-align: right;
+}
+
+.savedtabs {
+	width: 92px; 
+	height: 92px; 
+	float: left; 
+	border: 1px solid black;
+	display: inline-block;
+	border: 2px black solid;
+	border-radius: 8px;
+	margin: 2px;
+}
+
+.savedtabs img {
+	min-width: 32px;
+	max-width: 32px;
+	min-width: 32px;
+	max-height: 32px;
+	display: block;
+	margin: auto;
+	margin-top: 15px;
+    float: none;	
+    text-align: center;
+}
+
+.savedtabs p {
+	display: block;
+    float: none;	
+    text-align: center;
+    white-space: nowrap;
+}
+
+#delete {
+	height: 32px;
+	width: 215px;
+	background-color: transparent;
+	border: 2px black solid;
+    border-radius: 10px;
+    display: inline;
+    margin-top: 10px;
+    font-family: "Trebuchet MS", Helvetica, sans-serif;
+    font-size: 10pt;
+    float: left;
+}
+
+#prev {
+	margin-top: 10px;
+	margin-right: 13px
+}
+
+#next {
+	margin-top: 10px;
+	margin-left: 13px
+}
+
+#goback {
+	margin-top: -10px;
+	float: right;
 }

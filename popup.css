@@ -1,8 +1,45 @@
 body {
-  min-width: 250px; /* your desired width */
-  max-width: 250px;
-  min-height: 300px;
-  max-height: 300px;
+ 	min-width: 300px; /* your desired width */
+  max-width: 300px;
+  min-height: 375px;
+  max-height: 375px;
   position: relative;
   vertical-align: middle;
+  background-color: #E0FFFF;
+}
+
+button {
+  display: inline;
+  margin: 0 auto 0 auto;
+  float: left;
+  background-color: transparent;
+  border: 2px black solid;
+  border-radius: 10px;
+  font-family: "Trebuchet MS", Helvetica, sans-serif;
+  font-size: 10pt;
+}
+
+#title {
+	font-size: 12pt;
+	font-family: "Trebuchet MS", Helvetica, sans-serif;
+}
+
+.savebutton {
+	height: 90px;
+	width: 300px;
+	background-color: transparent;
+	border: 2px black solid;
+  border-radius: 10px;
+  margin-top: 5px;
+  font-size: 15pt;
+  font-family: "Trebuchet MS", Helvetica, sans-serif;
+}
+
+.savebutton:focus {
+	outline: 0; /* no blue outline when clicking this button */
+}
+
+#viewtabs {
+	margin-top: 10px;
+	text-align: right;
 }

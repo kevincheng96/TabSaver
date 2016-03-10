@@ -2,17 +2,28 @@
 <html>
 	<head>
 		<title>Tab Saver</title>
-		<script src="tabsview.js"></script>
-		<script src="js/jquery/jquery.min.js"></script>
 		<link rel="stylesheet" type="text/css" href="tabsview.css">
 	<head>
 	<body>
-		<div id="mainPopup">
-			<h3>Saved Tabs</h3>
+		<h3 class="inline">Saved Tabs</h3>
+		<button id="goback">Go back></button>
+		<br>
+		<div class="savedtabs" id="box1"></div>
+		<div class="savedtabs" id="box2"></div>
+		<div class="savedtabs" id="box3"></div>
+		<div class="savedtabs" id="box4"></div>
+		<div class="savedtabs" id="box5"></div>
+		<div class="savedtabs" id="box6"></div>
+		<div class="savedtabs" id="box7"></div>
+		<div class="savedtabs" id="box8"></div>
+		<div class="savedtabs" id="box9"></div>
+		<button id="prev"><-</button>
+		<div class="center">
+			<button id="delete">Remove all saved tabs</button>
 		</div>
-		<div id="savedtabs">
-		</div>
-		<button id="deletetabs">Remove all saved tabs</button>
-		<h4><a href="popup.html">Go back></a></h4>
+		<button id="next">-></button>
+
+		<script src="tabsview.js"></script>
+		<script src="js/jquery/jquery.min.js"></script>
 	</body>
 </html>

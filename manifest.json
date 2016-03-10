@@ -19,6 +19,8 @@
   "permissions": [
     "tabs",
     "sessions",
-    "storage"
+    "storage",
+    "<all_urls>",
+    "http://*/"
   ]
 }
