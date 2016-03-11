@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
-	var checkSaveTabButton = document.getElementById("savetab");
-	checkSaveTabButton.addEventListener('click', function() {
-		checkSaveTabButton.innerHTMl = "tab saved.";
+	var saveTabButton = document.getElementById("savetab");
+	saveTabButton.addEventListener('click', function() {
+		saveTabButton.innerHTMl = "tab saved.";
 		saveTab();
 	}, false);
 	// var checkSaveWindowButton = document.getElementById("savewindow");
@@ -15,15 +15,15 @@ document.addEventListener('DOMContentLoaded', function() {
 }, false);
 
 document.addEventListener('DOMContentLoaded', function() {
-	var checkSaveWindowButton = document.getElementById("savewindow");
-	checkSaveWindowButton.addEventListener('click', function() {
+	var saveWindowButton = document.getElementById("savewindow");
+	saveWindowButton.addEventListener('click', function() {
 		saveWindow();
 	}, false);
 }, false);
 
 document.addEventListener('DOMContentLoaded', function() {
-	var checkSaveSessionButton = document.getElementById("savesession");
-	checkSaveSessionButton.addEventListener('click', function() {
+	var saveSessionButton = document.getElementById("savesession");
+	saveSessionButton.addEventListener('click', function() {
 		saveSession();
 	}, false);
 }, false);
@@ -156,8 +156,8 @@ function saveSession() {
 };
 
 document.addEventListener('DOMContentLoaded', function() {
-	var checkViewTabsButton = document.getElementById("viewtabs");
-	checkViewTabsButton.addEventListener('click', function() {
+	var viewTabsButton = document.getElementById("viewtabs");
+	viewTabsButton.addEventListener('click', function() {
 		window.location.href = "tabsview.html";
 	}, false);
 }, false);

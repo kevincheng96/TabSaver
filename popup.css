@@ -19,6 +19,22 @@ button {
   font-size: 10pt;
 }
 
+button:focus {
+  outline: 0;
+}
+
+button:hover {
+  background-color: #3e8e41;
+  transition: all ease 0.8s;
+}
+
+button:active {
+  background-color: #3e8e41;
+  box-shadow: 0 5px #666;
+  transform: translateY(3px);
+  transition: all ease 0.1s;
+}
+
 #title {
 	font-size: 12pt;
 	font-family: "Trebuchet MS", Helvetica, sans-serif;
@@ -33,10 +49,6 @@ button {
   margin-top: 5px;
   font-size: 15pt;
   font-family: "Trebuchet MS", Helvetica, sans-serif;
-}
-
-.savebutton:focus {
-	outline: 0; /* no blue outline when clicking this button */
 }
 
 #viewtabs {

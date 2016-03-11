@@ -15,7 +15,7 @@ function generateTabView() { //creates the list of saved tabs on the popup (tabs
 			if(current_index >= url_array.length) //if current index is greater than the total length of urls
 				break;
 			var box_id = "box" + box_num.toString();
-			var box_element = document.getElementById(box_id);
+			var box_element = document.getElementById(box_id); //div element
 			while(box_element.firstChild) //removes every currently existing element in the current box_element
 			{
 				box_element.removeChild(box_element.firstChild);
@@ -28,7 +28,7 @@ function generateTabView() { //creates the list of saved tabs on the popup (tabs
 	        anchor.innerText = anchor_text;
 	        text.appendChild(anchor); 
 	        var image_src = url_array[current_index]['icon']; //src url of icon img
-	        image.src = image_src
+	        image.src = image_src;
 
 	  //       //requesting external image
 	  //       var xhr = new XMLHttpRequest();
@@ -51,8 +51,31 @@ function generateTabView() { //creates the list of saved tabs on the popup (tabs
 			//add link and icon to box_element, then change to box_element + 1 until all 9 boxes have something
 			//make sure to reset box number at the end
 			//when am i using the current_index number and when do i reset it?
+
+			//Listen for clicks to links within current box. 
+			//If the link in the box is clicked, remove all its elements from the view and from storage
+			box_element.addEventListener('click', function(e) { //e is box_element
+				var p = e.target.lastChild; //p within box_element
+				var clicked_url = p.firstChild.href; //the link of the anchor element inside p
+				chrome.tabs.create({url: clicked_url}); //creates a new tab with that url when clicked
+				//Removes clicked element from the list
+				while(e.target.firstChild) //removes every currently existing element in the current box_element
+				{
+					e.target.removeChild(e.target.firstChild);
+				}
+				//Removes clicked element from storage
+				for(var i = 0; i < url_array.length; i++) {
+					if(url_array[i]['url'] == String(clicked_url)) { //if the clicked url == the url in url_array
+						url_array.splice(i, 1); //removes the ith element from the url_array
+						break;
+					}
+				}
+				chrome.storage.local.clear(function(){
+					chrome.storage.local.set({'urls': url_array})
+				});
+			}, false);
 		}
-		
+
 		// var savedTabsList = document.getElementById('savedtabs');
 		// while (savedTabsList.firstChild) { //removes every currently existing element in savedTabsList
 		//     savedTabsList.removeChild(savedTabsList.firstChild);
@@ -81,8 +104,8 @@ function generateTabView() { //creates the list of saved tabs on the popup (tabs
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-	var checkPrevButton = document.getElementById("prev");
-	checkPrevButton.addEventListener('click', function() {
+	var prevButton = document.getElementById("prev");
+	prevButton.addEventListener('click', function() {
 		var page_num = Math.floor(current_index / 9); //get current page number
 		if(page_num > 0) 
 		{
@@ -94,8 +117,8 @@ document.addEventListener('DOMContentLoaded', function() {
 }, false);
 
 document.addEventListener('DOMContentLoaded', function() {
-	var checkNextButton = document.getElementById("next");
-	checkNextButton.addEventListener('click', function() {
+	var nextButton = document.getElementById("next");
+	nextButton.addEventListener('click', function() {
 		var page_num = Math.floor(current_index / 9); //get current page number
 		current_index = page_num * 9; //get first index of current page number
 		current_index += 9; //go back 9 indices to get to previous page
@@ -104,18 +127,18 @@ document.addEventListener('DOMContentLoaded', function() {
 }, false);
 
 document.addEventListener('DOMContentLoaded', function() {
-	var checkDeleteButton = document.getElementById("delete");
-	checkDeleteButton.addEventListener('click', function(){
+	var deleteButton = document.getElementById("delete");
+	deleteButton.addEventListener('click', function(){
 		chrome.storage.local.clear(function(){
-			checkDeleteButton.innerHTML = "Successfully deleted!";
+			deleteButton.innerHTML = "Successfully deleted!";
 			generateTabView();
 		});
 	}, false);
 }, false);
 
 document.addEventListener('DOMContentLoaded', function() {
-	var checkGoBackButton = document.getElementById("goback");
-	checkGoBackButton.addEventListener('click', function() {
+	var goBackButton = document.getElementById("goback");
+	goBackButton.addEventListener('click', function() {
 		window.location.href = "popup.html";
 	}, false);
 }, false);

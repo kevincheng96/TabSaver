@@ -1,9 +1,10 @@
 Checklist of stuff to do:
 -Add x next to each link so user can personally delete it without having to open that link first
 -Implement buttons to allow users to also save all tabs within the current window or all tabs within the current session
--Improve UI
 -Add a confirmation for clearing all saved tabs. Alerts don't work in Chrome extensions.
 -When there are too many tabs, need to find a way to collapse and display them conveniently
+-Button in middle of tabsview to open all tabs
+-For each box_elemnt, use GetElementsByClassName instead of GetElementById
 
 UI MASTER GOAL FOR TABLIST:
 -Have maybe 9 squares, each a link, with url icon in the middle of the square and short-url below the icon. Then have an arrow button that allows user to click and view more saved tabs until no tabs are left. (sort of like Safari's bookmarks)

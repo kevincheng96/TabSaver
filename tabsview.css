@@ -27,7 +27,19 @@ button {
 }
 
 button:focus {
-	outline: 0;
+  outline: 0;
+}
+
+button:hover {
+  background-color: #3e8e41;
+  transition: all ease 0.8s;
+}
+
+button:active {
+  background-color: #3e8e41;
+  box-shadow: 0 5px #666;
+  transform: translateY(3px);
+  transition: all ease 0.1s;
 }
 
 .center {
@@ -54,6 +66,11 @@ button:focus {
 	margin: 2px;
 }
 
+.savedtabs:hover {
+	background-color: #3e8e41;
+  	transition: all ease 0.8s;
+}
+
 .savedtabs img {
 	min-width: 32px;
 	max-width: 32px;
@@ -71,12 +88,19 @@ button:focus {
     float: none;	
     text-align: center;
     white-space: nowrap;
+    color: black;
+    font-family: "Trebuchet MS", Helvetica, sans-serif;
+    font-size: 8pt;
+}
+
+.savedtabs a {
+	color: black;
+	text-decoration: none;
 }
 
 #delete {
 	height: 32px;
 	width: 215px;
-	background-color: transparent;
 	border: 2px black solid;
     border-radius: 10px;
     display: inline;
