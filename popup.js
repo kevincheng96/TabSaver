@@ -1,29 +1,14 @@
 document.addEventListener('DOMContentLoaded', function() {
 	var saveTabButton = document.getElementById("savetab");
 	saveTabButton.addEventListener('click', function() {
-		saveTabButton.innerHTMl = "tab saved.";
 		saveTab();
 	}, false);
-	// var checkSaveWindowButton = document.getElementById("savewindow");
-	// checkSaveWindowButton.addEventListener('click', function() {
-	// 	saveWindow();
-	// }, false);
-	// var checkSaveSessionButton = document.getElementById("savesession");
-	// checkSaveWindowButton.addEventListener('click', function() {
-	// 	saveSession();
-	// }, false);
-}, false);
-
-document.addEventListener('DOMContentLoaded', function() {
-	var saveWindowButton = document.getElementById("savewindow");
-	saveWindowButton.addEventListener('click', function() {
+	var checkSaveWindowButton = document.getElementById("savewindow");
+	checkSaveWindowButton.addEventListener('click', function() {
 		saveWindow();
 	}, false);
-}, false);
-
-document.addEventListener('DOMContentLoaded', function() {
-	var saveSessionButton = document.getElementById("savesession");
-	saveSessionButton.addEventListener('click', function() {
+	var checkSaveSessionButton = document.getElementById("savesession");
+	checkSaveSessionButton.addEventListener('click', function() {
 		saveSession();
 	}, false);
 }, false);
@@ -63,6 +48,7 @@ function saveTab() {
 				//locally save url_dict_list (containing the new url)
 				chrome.storage.local.set({'urls': url_dict_list}, function() {
 					//callback function (maybe show that tab was successfully added)
+					document.getElementById('savetab').innerHTML = "tab saved.";
 				});
 			});
 		});	
@@ -103,7 +89,7 @@ function saveWindow() {
 				//locally save url_dict_list (containing the new url)
 				chrome.storage.local.set({'urls': url_dict_list}, function() {
 					//callback function (maybe show that tab was successfully added)
-					document.getElementById('savewindow').value = "window saved.";
+					document.getElementById('savewindow').innerHTML = "window saved.";
 					console.log('saved')
 				});
 			});
@@ -148,7 +134,7 @@ function saveSession() {
 				//locally save url_dict_list (containing the new url)
 				chrome.storage.local.set({'urls': url_dict_list}, function() {
 					//callback function (maybe show that tab was successfully added)
-					document.getElementById('savesession').innerHTMl = "session saved.";
+					document.getElementById('savesession').innerHTML = "session saved.";
 				});
 			});
 		});	

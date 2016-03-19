@@ -1,10 +1,56 @@
 //Global variable to keep track of current index in the array of URL's to display on the view
 var current_index = 0;
 
+//On view load
 document.addEventListener('DOMContentLoaded', function() {
 	generateTabView();
 }, false);
 
+//Go to the previous page
+document.addEventListener('DOMContentLoaded', function() {
+	var prevButton = document.getElementById("prev");
+	prevButton.addEventListener('click', function() {
+		var page_num = Math.floor((current_index - 1) / 9); //get current page number
+		if(page_num != 0) 
+		{
+			current_index = page_num - 1; //go back one page
+			current_index *= 9; //multiplied by 9 to get first index of current page (page 1 first index is 9)
+			generateTabView();
+		}
+	}, false);
+}, false);
+
+//Go to the next page
+document.addEventListener('DOMContentLoaded', function() {
+	var nextButton = document.getElementById("next");
+	nextButton.addEventListener('click', function() {
+		var page_num = Math.floor((current_index + 1) / 9); //get current page number
+		current_index = page_num //go forward by one page
+		current_index *= 9; //multiplied by 9 to get first index of current page
+		generateTabView();
+	}, false);
+}, false);
+
+//Delete all stored tabs
+document.addEventListener('DOMContentLoaded', function() {
+	var deleteButton = document.getElementById("delete");
+	deleteButton.addEventListener('click', function(){
+		chrome.storage.local.clear(function(){
+			deleteButton.innerHTML = "Successfully deleted!";
+			generateTabView();
+		});
+	}, false);
+}, false);
+
+//Go back to previous view
+document.addEventListener('DOMContentLoaded', function() {
+	var goBackButton = document.getElementById("goback");
+	goBackButton.addEventListener('click', function() {
+		window.location.href = "popup.html";
+	}, false);
+}, false);
+
+//Generates the tabs in the 9 boxes
 function generateTabView() { //creates the list of saved tabs on the popup (tabsview.html)
 	chrome.storage.local.get('urls', function(result) {
 		console.log(result);
@@ -12,13 +58,17 @@ function generateTabView() { //creates the list of saved tabs on the popup (tabs
 		var box_num = 1; //# for the id of the current box
 		for(box_num; box_num < 10; box_num++)
 		{
-			if(current_index >= url_array.length) //if current index is greater than the total length of urls
-				break;
 			var box_id = "box" + box_num.toString();
+			console.log(box_id);
+			console.log(current_index);
 			var box_element = document.getElementById(box_id); //div element
 			while(box_element.firstChild) //removes every currently existing element in the current box_element
 			{
 				box_element.removeChild(box_element.firstChild);
+			}
+			if(current_index >= url_array.length) //if current index is greater than the total length of urls
+			{
+				continue; //jumps over current iteration
 			}
 			var text = document.createElement('p'); //url text
 	        var image = document.createElement('img'); //url image
@@ -48,9 +98,6 @@ function generateTabView() { //creates the list of saved tabs on the popup (tabs
 	       	//add text to box
 	       	box_element.appendChild(text);
 	        current_index++;
-			//add link and icon to box_element, then change to box_element + 1 until all 9 boxes have something
-			//make sure to reset box number at the end
-			//when am i using the current_index number and when do i reset it?
 
 			//Listen for clicks to links within current box. 
 			//If the link in the box is clicked, remove all its elements from the view and from storage
@@ -74,7 +121,8 @@ function generateTabView() { //creates the list of saved tabs on the popup (tabs
 					chrome.storage.local.set({'urls': url_array})
 				});
 			}, false);
-		}
+		} 
+		box_num = 1; //resets box_num (might not be necessary, but for safety purposes)
 
 		// var savedTabsList = document.getElementById('savedtabs');
 		// while (savedTabsList.firstChild) { //removes every currently existing element in savedTabsList
@@ -102,43 +150,3 @@ function generateTabView() { //creates the list of saved tabs on the popup (tabs
 		// });
 	});
 }
-
-document.addEventListener('DOMContentLoaded', function() {
-	var prevButton = document.getElementById("prev");
-	prevButton.addEventListener('click', function() {
-		var page_num = Math.floor(current_index / 9); //get current page number
-		if(page_num > 0) 
-		{
-			current_index = page_num * 9; //get first index of current page number
-			current_index -= 9; //go back 9 indices to get to previous page
-			generateTabView();
-		}
-	}, false);
-}, false);
-
-document.addEventListener('DOMContentLoaded', function() {
-	var nextButton = document.getElementById("next");
-	nextButton.addEventListener('click', function() {
-		var page_num = Math.floor(current_index / 9); //get current page number
-		current_index = page_num * 9; //get first index of current page number
-		current_index += 9; //go back 9 indices to get to previous page
-		generateTabView();
-	}, false);
-}, false);
-
-document.addEventListener('DOMContentLoaded', function() {
-	var deleteButton = document.getElementById("delete");
-	deleteButton.addEventListener('click', function(){
-		chrome.storage.local.clear(function(){
-			deleteButton.innerHTML = "Successfully deleted!";
-			generateTabView();
-		});
-	}, false);
-}, false);
-
-document.addEventListener('DOMContentLoaded', function() {
-	var goBackButton = document.getElementById("goback");
-	goBackButton.addEventListener('click', function() {
-		window.location.href = "popup.html";
-	}, false);
-}, false);
