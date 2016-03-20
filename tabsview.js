@@ -20,14 +20,17 @@ document.addEventListener('DOMContentLoaded', function() {
 	}, false);
 }, false);
 
-//Go to the next page
+//Go to the next page ***BUG*** (allows page to go to next page when there are only exactly 9 tabs on current window)
 document.addEventListener('DOMContentLoaded', function() {
 	var nextButton = document.getElementById("next");
 	nextButton.addEventListener('click', function() {
-		var page_num = Math.floor((current_index + 1) / 9); //get current page number
-		current_index = page_num //go forward by one page
-		current_index *= 9; //multiplied by 9 to get first index of current page
-		generateTabView();
+		if ((current_index + 1) % 9 != 0) 
+		{
+			var page_num = Math.floor((current_index + 1) / 9); //get current page number
+			current_index = page_num //go forward by one page
+			current_index *= 9; //multiplied by 9 to get first index of current page
+			generateTabView();
+		}
 	}, false);
 }, false);
 
@@ -59,16 +62,19 @@ function generateTabView() { //creates the list of saved tabs on the popup (tabs
 		for(box_num; box_num < 10; box_num++)
 		{
 			var box_id = "box" + box_num.toString();
-			console.log(box_id);
-			console.log(current_index);
 			var box_element = document.getElementById(box_id); //div element
 			while(box_element.firstChild) //removes every currently existing element in the current box_element
 			{
 				box_element.removeChild(box_element.firstChild);
+				console.log("deleted" + box_num);
 			}
-			if(current_index >= url_array.length) //if current index is greater than the total length of urls
+			if(url_array == undefined)
 			{
-				continue; //jumps over current iteration
+				continue;//jumps over current iteration
+			}
+			else if(current_index >= url_array.length) //if current index is greater than the total length of urls
+			{
+				continue;//jumps over current iteration
 			}
 			var text = document.createElement('p'); //url text
 	        var image = document.createElement('img'); //url image
@@ -78,20 +84,8 @@ function generateTabView() { //creates the list of saved tabs on the popup (tabs
 	        anchor.innerText = anchor_text;
 	        text.appendChild(anchor); 
 	        var image_src = url_array[current_index]['icon']; //src url of icon img
+	        console.log(image_src);
 	        image.src = image_src;
-
-	  //       //requesting external image
-	  //       var xhr = new XMLHttpRequest();
-			// xhr.open("GET", image_src);
-			// xhr.responseType = "blob";
-			// xhr.onload = function(e){
-			//     image.src = window.URL.createObjectURL(xhr.response);
-			//      //add image to box
-	  //       	box_element.appendChild(image);
-	  //       	//add text to box
-	  //       	box_element.appendChild(text);
-			// };
-			// xhr.send();
 
 			//add image to box
 	        box_element.appendChild(image);
@@ -123,30 +117,5 @@ function generateTabView() { //creates the list of saved tabs on the popup (tabs
 			}, false);
 		} 
 		box_num = 1; //resets box_num (might not be necessary, but for safety purposes)
-
-		// var savedTabsList = document.getElementById('savedtabs');
-		// while (savedTabsList.firstChild) { //removes every currently existing element in savedTabsList
-		//     savedTabsList.removeChild(savedTabsList.firstChild);
-		// }
-		// var ul = makeUL(url_array); //makes an unordered list of stored urls using makeURL()
-		// savedTabsList.appendChild(ul); //dynamically adds the ul of saved tabs to the savedTabsList
-
-		//Listen for clicks to element of the list. If an element is clicked, remove it from the list and from storage
-		// savedTabsList.addEventListener('click', function(e) { //listens for a click on the link
-		// 	var clicked_url = e.target.href;
-		// 	chrome.tabs.create({url: clicked_url}); //creates a new tab with that url when clicked
-		// 	//Removes clicked element from the list
-		// 	e.target.parentElement.parentElement.removeChild(e.target.parentElement); 
-		// 	//Removes clicked element from storage
-		// 	for(var i = 0; i < url_array.length; i++) {
-		// 		if(url_array[i]['url'] == String(e.target.href)) { //if the clicked url == the url in url_array
-		// 			url_array.splice(i, 1); //removes the ith element from the url_array
-		// 			break;
-		// 		}
-		// 	}
-		// 	chrome.storage.local.clear(function(){
-		// 		chrome.storage.local.set({'urls': url_array})
-		// 	});
-		// });
 	});
 }

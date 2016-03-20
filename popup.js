@@ -36,7 +36,7 @@ function saveTab() {
 			var tab_url = tab[0].url;
 			var url_short = tab[0].title;
 			var url_icon = tab[0].favIconUrl
-			var url_dict = {'url': tab_url, 'url_short': url_short, 'icon': url_icon}
+			var url_dict = {'url': tab_url, 'url_short': url_short, 'icon': url_icon};
 			if ($.inArray(tab_url, url_list) == -1) //if current URL is not already saved
 			{
 				url_dict_list.push(url_dict);
@@ -76,7 +76,8 @@ function saveWindow() {
 			w['tabs'].forEach(function(tab) {
 				var tab_url = tab.url;
 				var url_short = tab.title;
-				var url_dict = {'url': tab_url, 'url_short': url_short}
+				var url_icon = tab.favIconUrl;
+				var url_dict = {'url': tab_url, 'url_short': url_short, 'icon': url_icon};
 				if ($.inArray(tab_url, url_list) == -1) //if current URL is not already saved
 				{
 					url_dict_list.push(url_dict);
@@ -120,7 +121,8 @@ function saveSession() {
 				w['tabs'].forEach(function(tab) {
 					var tab_url = tab.url;
 					var url_short = tab.title;
-					var url_dict = {'url': tab_url, 'url_short': url_short}
+					var url_icon = tab.favIconUrl;
+					var url_dict = {'url': tab_url, 'url_short': url_short, 'icon': url_icon};
 					if ($.inArray(tab_url, url_list) == -1) //if current URL is not already saved
 					{
 						url_dict_list.push(url_dict);
