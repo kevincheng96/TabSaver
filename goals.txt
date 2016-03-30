@@ -3,8 +3,11 @@ Checklist of stuff to do:
 -Button in middle of tabsview to open all tabs
 -For each box_elemnt, use GetElementsByClassName instead of GetElementById
 -Auto-reload tabsview after deleting one element
+-Open all tabs in either current window or new window
+-Change tabsview style to list more tabs at once
+-Allow highlighting of tabs so that user can open the highlighted tabs together
 
 
 BUGS:
 -Clicking box element sometimes does not take me to new link
--When have 10 elements, and delete on from the first page, and then visit the second page, the second page will have no elements and cannot return to the first page
+-When have 9 elements and delete one, can still go to the next page and the next page is blank

@@ -7,12 +7,12 @@ html, body {
 
 body {
  	min-width: 300px; /* your desired width */
-  	max-width: 300px;
-  	min-height: 375px;
-  	max-height: 375px;
-  	position: relative;
-  	vertical-align: middle;
-  	background-color: #E0FFFF;
+  max-width: 300px;
+	min-height: 375px;
+	max-height: 375px;
+  position: relative;
+  vertical-align: middle;
+  background-color: #E0FFFF;
 }
 
 button {
@@ -21,9 +21,9 @@ button {
 	float: left;
 	background-color: transparent;
 	border: 2px black solid;
-    border-radius: 10px;
-    font-family: "Trebuchet MS", Helvetica, sans-serif;
-    font-size: 10pt;
+  border-radius: 10px;
+  font-family: "Trebuchet MS", Helvetica, sans-serif;
+  font-size: 10pt;
 }
 
 button:focus {
