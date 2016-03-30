@@ -47,6 +47,7 @@ button:active {
 	border: 2px black solid;
   border-radius: 10px;
   margin-top: 5px;
+  margin-bottom: 3px;
   font-size: 15pt;
   font-family: "Trebuchet MS", Helvetica, sans-serif;
 }

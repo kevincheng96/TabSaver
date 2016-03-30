@@ -77,13 +77,12 @@ button:active {
 	min-width: 32px;
 	max-height: 32px;
 	display: block;
-	margin: auto;
-	margin-top: 15px;
+	margin: 18px auto auto 30px; /*to center img*/
     float: none;	
     text-align: center;
 }
 
-.savedtabs p {
+.urltext {
 	display: block;
     float: none;	
     text-align: center;
@@ -91,6 +90,34 @@ button:active {
     color: black;
     font-family: "Trebuchet MS", Helvetica, sans-serif;
     font-size: 8pt;
+}
+
+.x {
+	margin: 1.5px 6.5px 0px 0px;
+	display: block;
+    float: right;	
+    text-align: right;
+    white-space: nowrap;
+    color: black;
+    font-family: "Trebuchet MS", Helvetica, sans-serif;
+    font-size: 13pt;
+}
+
+p.x:focus {
+  outline: 0;
+}
+
+p.x:hover {
+  color: #191919;
+  font-size: 15pt;
+  transform: translateY(-3px);
+  transition: all ease 0.5s;
+}
+
+p.x:active {
+  background-color: #3e8e41;
+  transform: translateY(3px);
+  transition: all ease 0.1s;
 }
 
 .savedtabs a {
