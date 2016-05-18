@@ -46,6 +46,17 @@ document.addEventListener('DOMContentLoaded', function() {
 			number_of_tabs = 0;
 			generateTabView();
 		});
+		// instantly deletes all the stored tabs from the current tabs view
+		var box_num = 1;
+		for(box_num; box_num < 10; box_num++)
+		{
+			var box_id = "box" + box_num.toString();
+			var box_element = document.getElementById(box_id); //div element
+			while(box_element.firstChild) //removes every currently existing element in the current box_element
+			{
+				box_element.removeChild(box_element.firstChild);
+			}
+		} 
 	}, false);
 }, false);
 
