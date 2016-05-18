@@ -2,7 +2,7 @@
   "manifest_version": 2,
 
   "name": "Procrastinate Later",
-  "description": "Allows the user to save unrelated tabs for later viewing. Do work now. Got nothing to do? Open saved tabs. Allows user to save current tab, current window, or even current session with one click.",
+  "description": "When wanting to focus on work but browsing upon an interesting page, you can save the page in this Chrome Extension and go back to it later. Procrastinate...later.",
   "version": "1.0",
 
   "icons": {
