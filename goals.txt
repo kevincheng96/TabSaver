@@ -1,5 +1,4 @@
 Checklist of stuff to do:
--Add a confirmation for clearing all saved tabs. Alerts don't work in Chrome extensions.
 -Button in middle of tabsview to open all tabs
 -For each box_elemnt, use GetElementsByClassName instead of GetElementById
 -Auto-reload tabsview after deleting one element
@@ -9,5 +8,5 @@ Checklist of stuff to do:
 
 
 BUGS:
--Clicking box element sometimes does not take me to new link
+-clicking x or new tab will sometimes delete entire storage (may be do to splicing a specific index)
 -When have 9 elements and delete one, can still go to the next page and the next page is blank

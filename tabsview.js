@@ -40,23 +40,29 @@ document.addEventListener('DOMContentLoaded', function() {
 document.addEventListener('DOMContentLoaded', function() {
 	var deleteButton = document.getElementById("delete");
 	deleteButton.addEventListener('click', function(){
-		chrome.storage.local.clear(function(){
-			deleteButton.innerHTML = "Successfully deleted!";
-			current_index = 0;
-			number_of_tabs = 0;
-			generateTabView();
-		});
-		// instantly deletes all the stored tabs from the current tabs view
-		var box_num = 1;
-		for(box_num; box_num < 10; box_num++)
-		{
-			var box_id = "box" + box_num.toString();
-			var box_element = document.getElementById(box_id); //div element
-			while(box_element.firstChild) //removes every currently existing element in the current box_element
+		deleteButton.innerText = "are you sure?";
+		deleteButton.className = "confirmation";
+		var confirmationButton = document.getElementsByClassName("confirmation")[0];
+		confirmationButton.addEventListener('click', function(){
+			chrome.storage.local.clear(function(){
+				deleteButton.innerHTML = "Successfully deleted!";
+				current_index = 0;
+				number_of_tabs = 0;
+				deleteButton.className = "";
+				generateTabView();
+			});
+			// instantly deletes all the stored tabs from the current tabs view
+			var box_num = 1;
+			for(box_num; box_num < 10; box_num++)
 			{
-				box_element.removeChild(box_element.firstChild);
+				var box_id = "box" + box_num.toString();
+				var box_element = document.getElementById(box_id); //div element
+				while(box_element.firstChild) //removes every currently existing element in the current box_element
+				{
+					box_element.removeChild(box_element.firstChild);
+				}
 			}
-		} 
+		}, false); 
 	}, false);
 }, false);
 
@@ -123,8 +129,12 @@ function generateTabView() { //creates the list of saved tabs on the popup (tabs
 
 			//Listen for clicks to links within current box. 
 			//If the link in the box is clicked, remove all its elements from the view and from storage
-			box_element.addEventListener('click', function(e) { //e.target is box_element
+			box_element.addEventListener('click', function(e) { //e.target is box_element sometimes, but elements of box other times
 				var p = e.target.lastChild; //p within box_element
+				if (p == null) { //if p is not the p within box_element, that means we clicked on an element instead of box_element
+					p = e.target.parentElement.lastChild
+					console.log(p)
+				}
 				var clicked_url = p.firstChild.href; //the link of the anchor element inside p
 				chrome.tabs.create({url: clicked_url}); //creates a new tab with that url when clicked
 				//Removes clicked element from the list
