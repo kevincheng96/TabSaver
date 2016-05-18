@@ -100,7 +100,7 @@ button:active {
     white-space: nowrap;
     color: black;
     font-family: "Trebuchet MS", Helvetica, sans-serif;
-    font-size: 13pt;
+    font-size: 15pt;
 }
 
 p.x:focus {
@@ -109,7 +109,7 @@ p.x:focus {
 
 p.x:hover {
   color: #191919;
-  font-size: 15pt;
+  font-size: 18pt;
   transform: translateY(-3px);
   transition: all ease 0.5s;
 }
