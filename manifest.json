@@ -2,7 +2,7 @@
   "manifest_version": 2,
 
   "name": "Procrastinate Later",
-  "description": "When wanting to focus on work but browsing upon an interesting page, you can save the page in this Chrome Extension and go back to it later. Procrastinate...later.",
+  "description": "Procrastinate later by saving up interesting tabs for later viewing.",
   "version": "1.0",
 
   "icons": {
