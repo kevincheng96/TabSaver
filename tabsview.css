@@ -6,10 +6,10 @@ html, body {
 }
 
 body {
- 	min-width: 300px; /* your desired width */
+  min-width: 300px; /* your desired width */
   max-width: 300px;
-	min-height: 375px;
-	max-height: 375px;
+  min-height: 375px;
+  max-height: 375px;
   position: relative;
   vertical-align: middle;
   background-color: #E0FFFF;
